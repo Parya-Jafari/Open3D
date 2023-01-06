@@ -1266,6 +1266,7 @@ endif()
 list(APPEND Open3D_3RDPARTY_HEADER_TARGETS Open3D::3rdparty_opengl)
 endif()
 
+if(NOT IOS)
 # RPC interface
 # zeromq
 if(USE_SYSTEM_ZEROMQ)
