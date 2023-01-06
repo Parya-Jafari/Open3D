@@ -1078,24 +1078,6 @@ if (BUILD_BENCHMARKS)
     # benchmark and benchmark_main will automatically become available.
 endif()
 
-# Headless rendering
-if (NOT IOS)
-if (ENABLE_HEADLESS_RENDERING)
-    open3d_find_package_3rdparty_library(3rdparty_opengl
-        REQUIRED
-        PACKAGE OSMesa
-        INCLUDE_DIRS OSMESA_INCLUDE_DIR
-        LIBRARIES OSMESA_LIBRARY
-    )
-else()
-    open3d_find_package_3rdparty_library(3rdparty_opengl
-        PACKAGE OpenGL
-        TARGETS OpenGL::GL
-    )
-endif()
-list(APPEND Open3D_3RDPARTY_PRIVATE_TARGETS Open3D::3rdparty_opengl)
-endif()
-
 # imgui
 if(BUILD_GUI)
     if(USE_SYSTEM_IMGUI)
