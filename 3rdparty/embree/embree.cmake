@@ -71,14 +71,15 @@ find_package(Git QUIET REQUIRED)
 ExternalProject_Add(
     ext_embree
     PREFIX embree
-    URL https://github.com/embree/embree/archive/refs/tags/v3.13.0.tar.gz
-    URL_HASH SHA256=4d86a69508a7e2eb8710d571096ad024b5174834b84454a8020d3a910af46f4f
+    URL https://github.com/embree/embree/archive/refs/tags/v3.13.3.tar.gz
+    URL_HASH SHA256=74ec785afb8f14d28ea5e0773544572c8df2e899caccdfc88509f1bfff58716f
     DOWNLOAD_DIR "${OPEN3D_THIRD_PARTY_DOWNLOAD_DIR}/embree"
     UPDATE_COMMAND ""
     PATCH_COMMAND ${GIT_EXECUTABLE} init
     COMMAND ${GIT_EXECUTABLE} apply --ignore-space-change --ignore-whitespace
         ${CMAKE_CURRENT_LIST_DIR}/0001-fix-for-iOS.patch
     CMAKE_ARGS
+        ${ExternalProject_CMAKE_ARGS_hidden}
         -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
         -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
         ${ISA_ARGS}
@@ -91,7 +92,6 @@ ExternalProject_Add(
         -DEMBREE_GEOMETRY_QUAD=OFF
         -DEMBREE_GEOMETRY_SUBDIVISION=OFF
         -DEMBREE_TASKING_SYSTEM=INTERNAL
-        ${ExternalProject_CMAKE_ARGS_hidden}
         ${WIN_CMAKE_ARGS}
     BUILD_BYPRODUCTS
         <INSTALL_DIR>/${Open3D_INSTALL_LIB_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}embree3${CMAKE_STATIC_LIBRARY_SUFFIX}
