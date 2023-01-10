@@ -1667,7 +1667,7 @@ else() # if(OPEN3D_USE_ONEAPI_PACKAGES)
         endif()
         target_compile_definitions(3rdparty_blas INTERFACE "$<$<COMPILE_LANGUAGE:CXX>:MKL_ILP64>")
         list(APPEND Open3D_3RDPARTY_PRIVATE_TARGETS_FROM_CUSTOM Open3D::3rdparty_blas)
-    endif()
+        endif()
     endif()
 endif() # if(OPEN3D_USE_ONEAPI_PACKAGES)
 

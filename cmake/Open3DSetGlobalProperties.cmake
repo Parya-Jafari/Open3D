@@ -192,6 +192,8 @@ function(open3d_set_global_properties target)
 
     # Harderning flags
     target_compile_options(${target} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:${HARDENING_CFLAGS}>")
+    if(NOT IOS)
     target_link_options(${target} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:${HARDENING_LDFLAGS}>")
+    endif()
     target_compile_definitions(${target} PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:${HARDENING_DEFINITIONS}>")
 endfunction()
