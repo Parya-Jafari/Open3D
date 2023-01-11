@@ -14,7 +14,7 @@ cmake_minimum_required(VERSION 3.20)
 
 if (APPLE)
 cmake_policy(SET CMP0114 NEW)
-set (CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING
+set (CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING
     "Minimum OS X deployment version" FORCE)
 endif()
 
@@ -185,6 +185,14 @@ if(NOT USE_SYSTEM_GLFW)
 endif()
 cmake_policy(GET CMP0072 CMP0072_VALUE)
 
+if(APPLE_AARCH64)
+message("I AM KING OF THE WORLD")
+endif()
+if(USE_BLAS)
+messge("YOU ARE USING BLAS?")
+else()
+message("YOU ARE NOT USING BLAS?")
+endif()
 # Catch a few incompatible build options
 if ((LINUX_AARCH64 OR APPLE_AARCH64) AND BUILD_ISPC_MODULE)
     message(FATAL_ERROR "ISPC module is not yet supported on ARM Linux")

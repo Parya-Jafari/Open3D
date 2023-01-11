@@ -1567,7 +1567,7 @@ else() # if(OPEN3D_USE_ONEAPI_PACKAGES)
             endif()
         endif()
 
-        if (NOT USE_SYSTEM_BLAS)
+        if (NOT USE_SYSTEM_BLAS AND NOT IOS)
             # Install gfortran first for compiling OpenBLAS/Lapack from source.
             message(STATUS "Building OpenBLAS with LAPACK from source")
 
@@ -1648,7 +1648,6 @@ else() # if(OPEN3D_USE_ONEAPI_PACKAGES)
             list(APPEND Open3D_3RDPARTY_PRIVATE_TARGETS_FROM_CUSTOM Open3D::3rdparty_blas)
         endif()
     else()
-    if(NOT IOS)
         include(${Open3D_3RDPARTY_DIR}/mkl/mkl.cmake)
         # MKL, cuSOLVER, cuBLAS
         # We link MKL statically. For MKL link flags, refer to:
@@ -1667,7 +1666,6 @@ else() # if(OPEN3D_USE_ONEAPI_PACKAGES)
         endif()
         target_compile_definitions(3rdparty_blas INTERFACE "$<$<COMPILE_LANGUAGE:CXX>:MKL_ILP64>")
         list(APPEND Open3D_3RDPARTY_PRIVATE_TARGETS_FROM_CUSTOM Open3D::3rdparty_blas)
-    endif()
     endif()
 endif() # if(OPEN3D_USE_ONEAPI_PACKAGES)
 
